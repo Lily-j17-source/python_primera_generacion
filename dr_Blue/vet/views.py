@@ -4,6 +4,7 @@ from django.template import loader
 from django.views.generic import View, TemplateView,ListView, DetailView
 
 from .models import PetOwner
+from .models import Pet
 
 # Create your views here.
 class Owners(View):
@@ -40,3 +41,22 @@ class OwnersDetail(DetailView):
 class Test(View):
     def get(self, request):
         return HttpResponse("Hello world from class view!!")
+
+
+class Pets(View):
+    def get(self,request):
+        pets = Pet.object.all()
+        context = {"pets": pets}
+
+        template = loader.get_template("vet/owners/pets/petlist.html")
+        return HttpResponse(template.render(context, request))
+
+
+class PetsList(TemplateView):
+    template_name = "vet/pets/petlist.html"
+
+    def get_context_data(self,**kwargs):
+        context = super().get_context_data(**kwargs)
+
+        context["pets"] = Pet.objects.all()
+        return context
