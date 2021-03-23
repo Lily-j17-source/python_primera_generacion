@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>Update Pet</title>
+{% endblock title %}
+
+{% block header %}
+<h1>Update Pet</h1>
+{% endblock header %}
+
+{% block content %}
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_ul }}
+    <button type="submit">actualizar mascota</button>
+</form>
+
+{% endblock content %}
