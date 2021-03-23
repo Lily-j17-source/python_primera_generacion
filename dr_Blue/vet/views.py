@@ -15,21 +15,21 @@ class Owners(View):
         template = loader.get_template("vet/owners/list.html")
         return HttpResponse(template.render(context, request))
 
-class OwnersList(TemplateView):
-    template_name = "vet/owners/list.html"
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        #print(context, "ESTO VIENE DEL PADRE (TEMPLATEVIEW)")
-        context["owners"] = PetOwner.objects.all()
-        #print(context, "ESTO LE AGREGAMOS NOSOTROS")
-        return context
-
-
-#class OwnersList(ListView):
-#    model = PetOwner
+#class OwnersList(TemplateView):
 #    template_name = "vet/owners/list.html"
-#   context_object_name = "owners"
+#
+#    def get_context_data(self, **kwargs):
+#        context = super().get_context_data(**kwargs)
+#        #print(context, "ESTO VIENE DEL PADRE (TEMPLATEVIEW)")
+#        context["owners"] = PetOwner.objects.all()
+#        #print(context, "ESTO LE AGREGAMOS NOSOTROS")
+#        return context
+
+
+class OwnersList(ListView):
+    model = PetOwner
+    template_name = "vet/owners/list.html"
+    context_object_name = "owners"
 
 
 class OwnersDetail(DetailView):
@@ -38,25 +38,32 @@ class OwnersDetail(DetailView):
     context_object_name = "owner"
 
 
-class Test(View):
-    def get(self, request):
-        return HttpResponse("Hello world from class view!!")
+#class Pets(View):
+#    def get(self,request):
+#        pets = Pet.object.all()
+#        context = {"pets": pets}
+#
+#        template = loader.get_template("vet/owners/pets/petlist.html")
+#        return HttpResponse(template.render(context, request))
 
 
-class Pets(View):
-    def get(self,request):
-        pets = Pet.object.all()
-        context = {"pets": pets}
+#class PetsList(TemplateView):
+#    template_name = "vet/pets/petlist.html"
+#
+#   def get_context_data(self,**kwargs):
+#        context = super().get_context_data(**kwargs)
+#
+#        context["pets"] = Pet.objects.all()
+#        return context
 
-        template = loader.get_template("vet/owners/pets/petlist.html")
-        return HttpResponse(template.render(context, request))
+
+class PetsList(ListView):
+    model = Pet
+    template_name = "vet/pets/list.html"
+    context_object_name = "pets"
 
 
-class PetsList(TemplateView):
-    template_name = "vet/pets/petlist.html"
-
-    def get_context_data(self,**kwargs):
-        context = super().get_context_data(**kwargs)
-
-        context["pets"] = Pet.objects.all()
-        return context
+class PetsDetail(DetailView):
+    model = Pet
+    template_name = "vet/pets/petdetails.html"
+    context_object_name = "pet"
