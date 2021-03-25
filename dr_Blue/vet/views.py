@@ -79,8 +79,12 @@ class DatesCreate(LoginRequiredMixin,CreateView):
     model = PetDate
     template_name = "vet/dates/create.html"
     form_class = DateForm
-    success_url = reverse_lazy("vet:dates_create")#<---
+    #success_url = reverse_lazy("vet:dates_create")#<---
     login_url = reverse_lazy("login")
+
+    #def get_success_url(self);
+     #   printprint(self.__dict__)
+      #  return reverse_lazy('vet:pet_details')
 
     def get_initial(self):
         initial = {}

@@ -39,8 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     #Custom apps
-    'vet',
+    'vet','api',
     'crispy_forms',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
