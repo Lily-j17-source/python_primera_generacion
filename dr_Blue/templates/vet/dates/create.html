@@ -1,12 +1,13 @@
 {% extends "base.html" %}
+
 {% load crispy_forms_tags %}
 
 {% block title %}
-<title>Update Owner</title>
+<title>Create Date</title>
 {% endblock title %}
 
 {% block header %}
-<h1>Update Owner</h1>
+<h1>Create Date</h1>
 {% endblock header %}
 
 {% block content %}
@@ -14,7 +15,8 @@
 <form method="POST">
     {% csrf_token %}
     {{ form|crispy }}
-    <button type="submit">actualizar dueño</button>
+    <a type="button" class="btn btn-outline-success" href="{% url 'vet:dates_create' %}?pet={{pet.id}}">Create Date</a> 
+
 </form>
 
 {% endblock content %}

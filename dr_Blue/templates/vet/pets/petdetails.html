@@ -13,5 +13,43 @@
 <p><strong>Name: </strong>{{ pet.name }}</p>
 <p><strong>Type: </strong>{{ pet.type }}</p>
 <p><strong>Owner: </strong>{{ pet.owner }}</p>
+<!--<a type="button" class="btn btn-outline-success" href="{% url 'vet:dates_create' %}?pet={{pet.id}}">Create Date</a> 
+-->
+{% if pets.datetime.all %}
+<p><strong>Pets: </strong></p>
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      {% if datetime.all %}
+      <table class="table">
+          <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Service</th>
+            <th>Pet</th>
+          </tr>
+          {% for date in datetime.all %}
+          <tr>
+            <th scope="row">
+              <a href="{% url 'vet:petdetails' pk=date.id  %}">
+                {{ date.id }}
+              </a>
+            </th>
+            <td>{{ date.datetime }}</td>
+            <td>{{ date.type }}</td>
+            <td>{{ date.pet_id}}</td>
+          </tr>
+          {% endfor %}
+      </table>
+      {% endif %}
+      
+    </div>
+  </div>
+</div>
+{% endif %}
+<a type="button" class="btn btn-outline-success" href="{% url 'vet:dates_create' %}?pet={{pet.id}}">Create Date</a> 
 
-{% endblock content %}
+<a type="button" class="btn btn-outline-success" href="{% url 'vet:dates_detail' %}">Date Details</a> 
+    
+
+    {% endblock content %}
