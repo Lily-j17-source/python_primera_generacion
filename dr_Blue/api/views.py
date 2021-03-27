@@ -1,14 +1,15 @@
 from rest_framework import generics
 
-from vet.models import PetOwner, Pet, PetDate
+from vet.models import PetOwner, Pet, PetDate, BranchOffice
 
 from .serializers import OwnersListSerializer, OwnersSerializer
 from .serializers import PetsListSerializer, PetsSerializer
+from .serializers import BranchOfficeListSerializer,BranchOfficeSerializer
 #from .serializers import OwnersSerializer, PetsSerializer
 
 # Create your views here.
 
-class ListOwnersAPIView(generics.ListAPIView):
+class ListOwnersAPIView(generics.ListAPIView):#muestra todos los elementos del modelo, todas los campos
     queryset = PetOwner.objects.all().order_by("created_at")
     serializer_class = OwnersListSerializer
 
@@ -16,7 +17,7 @@ class CreateOwnersAPIView(generics.CreateAPIView):
     queryset= PetOwner.objects.all()
     serializer_class = OwnersSerializer
 
-class RetrieveOwnersAPIView(generics.RetrieveAPIView):
+class RetrieveOwnersAPIView(generics.RetrieveAPIView):#va por un elemento en especifico
     queryset = PetOwner.objects.all()
     serializer_class = OwnersSerializer
 
@@ -40,9 +41,14 @@ class CreatePetsAPIView(generics.CreateAPIView):
 class RetrievePetsAPIView(generics.RetrieveAPIView):
     queryset = Pet.objects.all()
     serializer_class = PetsSerializer
+#-------------Branch office
+class CreateBranchOfficeAPIView(generics.CreateAPIView):
+    queryset= BranchOffice.objects.all()
+    serializer_class = BranchOfficeSerializer
 
-
-
+class ListBranchOfficeAPIView(generics.ListAPIView):
+    queryset = BranchOffice.objects.all().order_by("created_at")
+    serializer_class = BranchOfficeListSerializer
 
 
 

@@ -3,6 +3,7 @@ from django.urls import path, include
 #from .views import OwnersViewSet, PetsViewSet
 from .views import ListOwnersAPIView,RetrieveOwnersAPIView,CreateOwnersAPIView,UpdateOwnersAPIView, DestroyOwnersAPIView
 from .views import ListPetsAPIView,RetrievePetsAPIView,CreatePetsAPIView
+from .views import CreateBranchOfficeAPIView,ListBranchOfficeAPIView
 
 urlpatterns = [
     path("owners/",ListOwnersAPIView.as_view(), name= "list-owners"),
@@ -13,7 +14,10 @@ urlpatterns = [
 
     path("pets/",ListPetsAPIView.as_view(), name= "list-pets"),
     path("pets/create/",CreatePetsAPIView.as_view, name="create-pets"),
-    path("pets/<int:pk>/",RetrievePetsAPIView.as_view(),name="retrieve-pets")
+    path("pets/<int:pk>/",RetrievePetsAPIView.as_view(),name="retrieve-pets"),
+
+    path("branch/create/",CreateBranchOfficeAPIView.as_view(),name = "create-branch-office"),
+    path("branch/",ListBranchOfficeAPIView.as_view(),name="list-branch")
 ]
 
 
