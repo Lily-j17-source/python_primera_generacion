@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'vet','api',
     'crispy_forms',
     'rest_framework',
+    
+    "rest_framework.authtoken",
 ]
 
 MIDDLEWARE = [

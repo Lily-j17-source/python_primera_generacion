@@ -6,8 +6,8 @@ from .views import DestroyOwnersAPIView,RetrieveOwnerPetsAPIView,ListPetsAPIView
 
 #from .views import RetrievePetsAPIView,CreatePetsAPIView
 
-from .views import CreateBranchOfficeAPIView, ListBranchOfficeAPIView, RetrieveBranchOfficeAPIView
-from .views import CreatePetDateAPIView, ListPetDateAPIView
+from .views import CreateBranchOfficeAPIView, ListBranchOfficeAPIView, RetrieveBranchOfficeAPIView, RetrieveBranchOfficeDatesAPIView
+from .views import CreatePetDateAPIView, ListPetDateAPIView,CreateUsersAPIView
 
 urlpatterns = [
     path("owners/",ListOwnersAPIView.as_view(), name= "list-owners"),
@@ -26,9 +26,13 @@ urlpatterns = [
     path("branch/create/",CreateBranchOfficeAPIView.as_view(),name="create-branch-office"),
     path("branch/",ListBranchOfficeAPIView.as_view(),name="list-branch"),
     path("branch/<int:pk>/",RetrieveBranchOfficeAPIView.as_view(), name = "retrieve-branch"),
+    path("branch/<int:pk>/dates/",RetrieveBranchOfficeDatesAPIView.as_view(), name="retrieve-branch-offices-dates"),
 
     path("petsDates/",ListPetDateAPIView.as_view(),name="list-petDates"),
-    path("petsDates/create/",CreatePetDateAPIView.as_view(),name="create-petsDate")  
+    path("petsDates/create/",CreatePetDateAPIView.as_view(),name="create-petsDate"),  
+    
+    #users
+    path("users/create/", CreateUsersAPIView.as_view(), name="create-users")
 ]
 
 

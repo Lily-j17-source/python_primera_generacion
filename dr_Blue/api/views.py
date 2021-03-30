@@ -1,15 +1,19 @@
 from rest_framework import generics
+from django.contrib.auth.models import User
 
 from vet.models import PetOwner, Pet, PetDate, BranchOffice
 
 from .serializers import OwnersListSerializer, OwnersSerializer,OwnerPetsSerializer
 from .serializers import PetsListSerializer,PetOwnerSerializer
-from .serializers import BranchOfficeListSerializer,BranchOfficeSerializer
+from .serializers import BranchOfficeListSerializer,BranchOfficeSerializer,BranchOfficeDatesSerializer
 from .serializers import PetDatesListSerializer, PetDatesSerializer
+
+from .serializers import UsersSerializer
 #from .serializers import OwnersSerializer, PetsSerializer
 
 # Create your views here.
 
+#Owners
 class ListOwnersAPIView(generics.ListAPIView):#muestra todos los elementos del modelo, todas los campos
     queryset = PetOwner.objects.all().order_by("created_at")
     serializer_class = OwnersListSerializer #*
@@ -58,6 +62,10 @@ class ListBranchOfficeAPIView(generics.ListAPIView):
 class RetrieveBranchOfficeAPIView(generics.RetrieveAPIView):
     queryset = BranchOffice.objects.all()
     serializer_class = BranchOfficeSerializer
+
+class RetrieveBranchOfficeDatesAPIView(generics.RetrieveAPIView):
+    queryset = BranchOffice.objects.all()
+    serializer_class = BranchOfficeDatesSerializer
 #-----------PetDate
 class CreatePetDateAPIView(generics.CreateAPIView):
     queryset= PetDate.objects.all()
@@ -67,7 +75,10 @@ class ListPetDateAPIView(generics.ListAPIView):
     queryset = PetDate.objects.all().order_by("created_at")
     serializer_class = PetDatesListSerializer
 
-
+#-------------USERS
+class CreateUsersAPIView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UsersSerializer
 
 
 
