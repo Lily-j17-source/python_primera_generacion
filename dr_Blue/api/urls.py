@@ -1,4 +1,5 @@
 from django.urls import path, include
+from rest_framework.authtoken import views
 #from rest_framework import routers
 #from .views import OwnersViewSet, PetsViewSet
 from .views import ListOwnersAPIView,RetrieveOwnersAPIView,CreateOwnersAPIView,UpdateOwnersAPIView
@@ -32,7 +33,8 @@ urlpatterns = [
     path("petsDates/create/",CreatePetDateAPIView.as_view(),name="create-petsDate"),  
     
     #users
-    path("users/create/", CreateUsersAPIView.as_view(), name="create-users")
+    path("users/create/", CreateUsersAPIView.as_view(), name="create-users"),
+    path("users/login/",views.obtain_auth_token,name="login-users")
 ]
 
 
